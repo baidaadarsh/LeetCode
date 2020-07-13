@@ -32,7 +32,7 @@ Approach:
 1. Bit Manipulation
 
 */
-package leetcode.julychallenge;
+package julychallenge;
 
 public class ReverseBits {
 	// you need treat n as an unsigned value
