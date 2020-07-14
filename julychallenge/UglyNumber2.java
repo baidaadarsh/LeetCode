@@ -28,7 +28,7 @@ Approach:
 2. Using TreeSet
 
 */
-package leetcode.julychallenge;
+package julychallenge;
 
 import java.util.TreeSet;
 
