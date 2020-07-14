@@ -72,8 +72,7 @@ public class ThreeSum {
                     j++;
                 }
             }            
-        }
-        
+        }        
         return new ArrayList<List<Integer>>(result);
     }
 
