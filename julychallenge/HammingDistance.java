@@ -21,7 +21,6 @@ Explanation:
        ↑   ↑
 
 The above arrows point to positions where the corresponding bits are different.
-
 Approach:
 1. XOR + java built-in library function Integer.bitCount uses SWAR algo.
 2. XOR + Brian Kernighan'S Algo count the x & x-1 while x>0. 
