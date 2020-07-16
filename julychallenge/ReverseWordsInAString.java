@@ -32,6 +32,10 @@ Follow up:
 
 For C programmers, try to solve it in-place in O(1) extra space.
 
+Approach:
+1. Using Stack, No StringBuilder, slow!!
+2. Better Approach: Uses StringBuilder and faster for loop iteration, efficient use of lastIndexOf and append with indexes.
+
 */
 
 package julychallenge;
@@ -70,5 +74,24 @@ public class ReverseWordsInAString {
 			res = res.substring(0, resLen);
 		return res;
 	}
+	
+	/*Better Approach: Uses StringBuilder and faster for loop iteration, efficient use of lastIndexOf and append with indexes.
+	public static String reverseWords(String s) {
+        if (s == null) {
+            return s;
+        }
+        
+        StringBuilder ans = new StringBuilder();
+        
+        for (int i=s.length()-1, j; i>=0; i--) {
+            if (s.charAt(i) != ' ') {
+                j = i; // j is pointing to the end char of the current word
+                i = s.lastIndexOf(' ', i); // this returns the white space preceding the current word
+                ans.append(s, i+1, j+1).append(" ");
+            }
+        }
+        
+        return ans.toString().trim();
+    }*/
 
 }
