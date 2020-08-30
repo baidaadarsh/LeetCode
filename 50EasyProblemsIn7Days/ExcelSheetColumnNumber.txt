@@ -1,4 +1,4 @@
-3. [171. Excel Sheet Column Number] - Math
+[171. Excel Sheet Column Number] - Math
 
 Question:
 
