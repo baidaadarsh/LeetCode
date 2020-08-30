@@ -1,0 +1,62 @@
+3. [171. Excel Sheet Column Number] - Math
+
+Question:
+
+Given a column title as appear in an Excel sheet, return its corresponding column number.
+
+For example:
+
+    A -> 1
+    B -> 2
+    C -> 3
+    ...
+    Z -> 26
+    AA -> 27
+    AB -> 28 
+    ...
+Example 1:
+
+Input: "A"
+Output: 1
+Example 2:
+
+Input: "AB"
+Output: 28
+Example 3:
+
+Input: "ZY"
+Output: 701
+ 
+
+Constraints:
+
+1 <= s.length <= 7
+s consists only of uppercase English letters.
+s is between "A" and "FXSHRXW".
+
+My Solution:
+class Solution {
+    public int titleToNumber(String s) {
+        char arr[] = s.toCharArray();
+        int columnNumber = 0, len = arr.length;
+        for(char c: arr)
+            columnNumber = columnNumber + ((int) Math.pow(26, --len) * (c - 'A' + 1));
+        
+        return columnNumber;
+    }
+}
+
+Leetcode Solution:
+class Solution {
+    public int titleToNumber(String s) {
+		int ret=0;
+		for (char c: s.toCharArray()) {
+            ret *= 26;
+			ret += (int) c - 64;
+		}
+		return ret;
+	}
+}
+
+Approach:
+1. Using character array - using number system concept.
