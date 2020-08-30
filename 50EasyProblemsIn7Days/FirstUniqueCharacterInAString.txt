@@ -1,0 +1,80 @@
+[387. First Unique Character in a String]
+
+Question:
+
+Given a string, find the first non-repeating character in it and return its index. If it doesn't exist, return -1.
+
+Examples:
+
+s = "leetcode"
+return 0.
+
+s = "loveleetcode"
+return 2.
+ 
+
+Note: You may assume the string contains only lowercase English letters.
+
+
+
+My Solution:
+class Solution {
+    public int firstUniqChar(String s) {
+        int i = 0;
+        int[] arr = new int[256];
+        
+        while(i < s.length()) {
+            arr[s.charAt(i)]++;
+            i++;
+        }
+        i = 0;
+        while(i < s.length()) {
+            if(arr[s.charAt(i)] == 1)
+                return i;
+            i++;
+        }
+        
+        return -1;
+    }
+}
+
+Leetcode Solution:
+class Solution {
+    public int firstUniqChar(String s) {
+        HashMap<Character, Integer> count = new HashMap<Character, Integer>();
+        int n = s.length();
+        // build hash map : character and how often it appears
+        for (int i = 0; i < n; i++) {
+            char c = s.charAt(i);
+            count.put(c, count.getOrDefault(c, 0) + 1);
+        }
+        
+        // find the index
+        for (int i = 0; i < n; i++) {
+            if (count.get(s.charAt(i)) == 1) 
+                return i;
+        }
+        return -1;
+    }
+}
+
+Second approach:
+class Solution {
+    public int firstUniqChar(String s) {
+        int ans = Integer.MAX_VALUE;
+        for( int index='a'; index<='z'; index++ ) {
+            int ch = s.indexOf((char)index);
+            if(ch!=-1 && ch == s.lastIndexOf(index))
+                ans = Math.min(ans,ch);
+        }
+        return ans==Integer.MAX_VALUE?-1:ans;
+    }
+}
+
+Approach:
+1. HashMap
+2. Integer Array to store count
+3. Using indexOf
+
+Learnings:
+1. Integer array is always better than HashMap<String, Integer> [Time Complexity].
