@@ -1,0 +1,168 @@
+[412. Fizz Buzz]
+
+Question:
+
+Write a program that outputs the string representation of numbers from 1 to n.
+
+But for multiples of three it should output “Fizz” instead of the number and for the multiples of five output “Buzz”. For numbers which are multiples of both three and five output “FizzBuzz”.
+
+Example:
+
+n = 15,
+
+Return:
+[
+    "1",
+    "2",
+    "Fizz",
+    "4",
+    "Buzz",
+    "Fizz",
+    "7",
+    "8",
+    "Fizz",
+    "Buzz",
+    "11",
+    "Fizz",
+    "13",
+    "14",
+    "FizzBuzz"
+]
+
+My Solution:
+
+class Solution {
+    public List<String> fizzBuzz(int n) {
+        List<String> result = new ArrayList<String>();
+        for(int i = 1; i <=n; i++) {
+            if(i % 15 == 0)
+                result.add("FizzBuzz");
+            else if(i % 3 == 0)
+                result.add("Fizz");
+            else if(i % 5 == 0)
+                result.add("Buzz");
+            else
+                result.add(String.valueOf(i));
+        }
+        return result;
+    }
+}
+
+LeetCode Solution:
+Approach 2:
+class Solution {
+    private static final String FIZZ = "Fizz";
+    private static final String BUZZ = "Buzz";
+    private static final String FIZZ_BUZZ = "FizzBuzz";
+    
+    public List<String> fizzBuzz(int n) {
+        if(n<1)
+            return Collections.<String>emptyList();
+
+        return new java.util.AbstractList<String>(){
+//Idea behind this impl is that any testing frameowrk will just do iteration of the returned list and compare numbers at different position. At each position we calculate the value here instead of pre-calculating and pre-filling it.            
+            public String get(int i){
+                i++;
+                if(i%15==0) //instead of checking for both 3 and 5 separately, check for 15
+                    return FIZZ_BUZZ;
+                if(i%3==0)
+                    return FIZZ;
+                if(i%5==0)
+                    return BUZZ;
+                return String.valueOf(i);
+            }
+            
+            public int size(){
+                return n;
+            }
+        };
+    }
+}
+
+Approach 3:
+class Solution {
+  public List<String> fizzBuzz(int n) {
+    // ans list
+    List<String> ans = new ArrayList<String>();
+
+    for (int num = 1; num <= n; num++) {
+
+      boolean divisibleBy3 = (num % 3 == 0);
+      boolean divisibleBy5 = (num % 5 == 0);
+
+      String numAnsStr = "";
+
+      if (divisibleBy3) {
+        // Divides by 3, add Fizz
+        numAnsStr += "Fizz";
+      }
+
+      if (divisibleBy5) {
+        // Divides by 5, add Buzz
+        numAnsStr += "Buzz";
+      }
+
+      if (numAnsStr.equals("")) {
+        // Not divisible by 3 or 5, add the number
+        numAnsStr += Integer.toString(num);
+      }
+
+      // Append the current answer str to the ans list
+      ans.add(numAnsStr);
+    }
+
+    return ans;
+  }
+}
+
+Approach 4:
+class Solution {
+  public List<String> fizzBuzz(int n) {
+
+    // ans list
+    List<String> ans = new ArrayList<String>();
+
+    // Hash map to store all fizzbuzz mappings.
+    HashMap<Integer, String> fizzBizzDict =
+        new HashMap<Integer, String>() {
+          {
+            put(3, "Fizz");
+            put(5, "Buzz");
+          }
+        };
+
+    for (int num = 1; num <= n; num++) {
+
+      String numAnsStr = "";
+
+      for (Integer key : fizzBizzDict.keySet()) {
+
+        // If the num is divisible by key,
+        // then add the corresponding string mapping to current numAnsStr
+        if (num % key == 0) {
+          numAnsStr += fizzBizzDict.get(key);
+        }
+      }
+
+      if (numAnsStr.equals("")) {
+        // Not divisible by 3 or 5, add the number
+        numAnsStr += Integer.toString(num);
+      }
+
+      // Append the current answer str to the ans list
+      ans.add(numAnsStr);
+    }
+
+    return ans;
+  }
+}
+
+Approach:
+1. Intuition + If else
+2. Using Library Functions - reimplementing them.
+3. String Concatenation - tends to be a good approach when conditions increase say "FizzBuzzJazz"
+4. Using HashTable - we can increase or decrease as many conditions as we want without changing code.[Use LinkedHashTable to preserve order]
+
+Learnings -
+1. Using Library functions can help improve your code.
+2. HashTables can be used in cases where we need to create multiple if else conditions, it would help improve the code.
