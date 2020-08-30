@@ -35,7 +35,7 @@ s consists only of uppercase English letters.
 s is between "A" and "FXSHRXW".
 
 My Solution:
-class Solution {
+```class Solution {
     public int titleToNumber(String s) {
         char arr[] = s.toCharArray();
         int columnNumber = 0, len = arr.length;
@@ -44,7 +44,7 @@ class Solution {
         
         return columnNumber;
     }
-}
+}```
 
 Leetcode Solution:
 class Solution {
