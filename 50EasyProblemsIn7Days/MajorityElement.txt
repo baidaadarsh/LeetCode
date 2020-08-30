@@ -1,0 +1,63 @@
+[169. Majority Element]
+
+Question:
+
+Given an array of size n, find the majority element. The majority element is the element that appears more than ⌊ n/2 ⌋ times.
+
+You may assume that the array is non-empty and the majority element always exist in the array.
+
+Example 1:
+
+Input: [3,2,3]
+Output: 3
+Example 2:
+
+Input: [2,2,1,1,1,2,2]
+Output: 2
+
+My Solution:
+class Solution {
+    public int majorityElement(int[] nums) {
+        int i, count;
+        HashMap<Integer, Integer> map = new HashMap<Integer, Integer>();
+        for(i = 0; i < nums.length; i++) {
+            count = map.getOrDefault(nums[i], 0);
+            count++;
+            if(count > nums.length/2)
+                return nums[i];
+            else
+                map.put(nums[i], count);
+                
+        }        
+        return -1;
+    }
+}
+
+Leetcode Solution:
+Approach 6:
+class Solution {
+    public int majorityElement(int[] nums) {
+        int count = 0;
+        Integer candidate = null;
+
+        for (int num : nums) {
+            if (count == 0) {
+                candidate = num;
+            }
+            count += (num == candidate) ? 1 : -1;
+        }
+
+        return candidate;
+    }
+}
+
+Approach:
+1. Brute Force.
+2. HashMap.
+3. Sorting.
+4. Randomization.
+5. Divide and Conquer
+6. Boyer-Moore Voting Algorithm[Best] - Increment and decrement count, while finding candidate.time complexity:O(n)
+
+Learnings:
+1. Boyer-Moore Voting Algorithm[Delighted to learn about it].
