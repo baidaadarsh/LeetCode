@@ -1,0 +1,65 @@
+[206. Reverse Linked List]
+
+Question:
+
+Reverse a singly linked list.
+
+Example:
+
+Input: 1->2->3->4->5->NULL
+Output: 5->4->3->2->1->NULL
+Follow up:
+
+A linked list can be reversed either iteratively or recursively. Could you implement both?
+
+My Solution:
+Iterative:
+class Solution {
+    public ListNode reverseList(ListNode head) {
+        if(head == null)
+            return head;
+        ListNode newHead = null, prev = null;
+        while(head.next != null) {
+            newHead = new ListNode(head.val, prev);
+            prev = newHead;
+            head = head.next;
+        }
+        newHead = new ListNode(head.val, prev);
+        return newHead;
+    }
+}
+
+Recursive:
+class Solution {
+    public ListNode reverseList(ListNode head) {
+        if(head == null || head.next == null)
+            return head;
+        ListNode newHead = reverseList(head.next);
+        head.next.next = head;
+        head.next = null;
+        return newHead;
+    }
+}
+
+Leetcode Solution:
+
+class Solution {
+    public ListNode reverseList(ListNode head) {
+        ListNode prev=null;
+        ListNode current=head;
+        while(current!=null){
+            ListNode temp=current.next;
+            current.next=prev;
+            prev=current;
+            current=temp;
+        }
+        return prev;
+    }
+}
+
+Approach:
+1. Creating a new LinkedList while traversing the old one.
+2. Using one temp reference node.
+
+Learnings:
+1. You need not allocate new memory spaces for LinkedList Questions. The number of nodes are just enough. Try to use at max use 1 extra node reference.
