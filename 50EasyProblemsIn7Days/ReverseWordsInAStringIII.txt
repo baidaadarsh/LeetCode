@@ -1,0 +1,79 @@
+[557. Reverse Words in a String III]
+
+Question:
+Given a string, you need to reverse the order of characters in each word within a sentence while still preserving whitespace and initial word order.
+
+Example 1:
+Input: "Let's take LeetCode contest"
+Output: "s'teL ekat edoCteeL tsetnoc"
+Note: In the string, each word is separated by single space and there will not be any extra space in the string.
+
+My Solution:
+class Solution {
+    public String reverseWords(String s) {
+        int i = 0, len = s.length() - 1, start = 0;
+        char[] charArray;
+        
+        charArray = s.toCharArray();
+        while(i <= len) {
+            while(i <= len && !(isSpaceChar(charArray[i])))
+                i++;
+            revCharArray(charArray, start, i - 1);
+            i++;
+            start  = i;
+        }
+        return new String(charArray);
+    }
+    
+    public boolean isSpaceChar(char ch) {
+        return (ch == ' ')? true : false;
+    }
+    
+    public void revCharArray(char[] charArray, int i, int j) {
+        while(i < j) {
+            if(charArray[i] != charArray[j])
+                swap(charArray, i, j);
+            i++;
+            j--;
+        }
+    }
+    
+    public void swap(char[] charArray, int i, int j) {
+        char temp;
+        
+        temp = charArray[i];
+        charArray[i] =charArray[j];
+        charArray[j] = temp;
+    }
+}
+
+Leetcode Solution:
+class Solution {
+    public String reverseWords(String s) {
+        int prev = 0;
+        char[] arr = s.toCharArray();
+        
+        for(int i =0;i<arr.length;i++){
+            if(arr[i] == ' '){
+                reverse(arr, prev, i-1);
+                prev = i+1;
+            }
+        }
+        reverse(arr, prev, arr.length-1);
+        return new String(arr);
+    }
+    
+    private void reverse(char[] arr, int from, int to){
+        while(from<to){
+            char tmp = arr[from];
+            arr[from] = arr[to];
+            arr[to] = tmp;
+            from++;
+            to--;
+        }
+    }
+}
+
+Approach:
+1. StringBuilder, split and reverse
+2. charArray
