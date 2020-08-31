@@ -1,7 +1,7 @@
 # 50EasyProblemsin7Days
 This repository contains the set of 50 Easy Problems in 7 days.
 
-#Problem List
+# Problem List
 1. [121. Best Time to Buy and Sell Stock] - Array
 2. [26. Remove Duplicates from Sorted Array] - Array
 3. [27. Remove Element] - Array
