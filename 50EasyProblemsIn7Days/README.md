@@ -54,7 +54,7 @@ This repository contains the set of 50 Easy Problems in 7 days.
 50. [88. Merge Sorted Array] - Two Pointers
 
 
-## Learnings:
+# Learnings:
 # General Learnings:
 1. Read the question carefully.
 2. Think Simply.
