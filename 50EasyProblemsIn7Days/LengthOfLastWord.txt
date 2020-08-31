@@ -1,0 +1,42 @@
+[58. Length of Last Word]
+
+Question:
+Given a string s consists of upper/lower-case alphabets and empty space characters ' ', return the length of last word (last word means the last appearing word if we loop from left to right) in the string.
+
+If the last word does not exist, return 0.
+
+Note: A word is defined as a maximal substring consisting of non-space characters only.
+
+Example:
+
+Input: "Hello World"
+Output: 5
+
+My Solution:
+class Solution {
+    public int lengthOfLastWord(String s) {
+        s = " " + s.trim();
+        int i = s.length() - 1;
+        while(i > 0 && s.charAt(i) != ' ')
+            i--;
+        return s.length() - i - 1;
+    }
+}
+
+Leetcode Solution:
+class Solution {
+    public int lengthOfLastWord(String s) {
+        if(s.length() == 0){return 0;}
+        int num = 0;
+        String str = s.trim();
+        int len = str.length();
+        for(int i=str.length() - 1; i >= 0; i--){
+            if(str.charAt(i)!=' '){
+                num++;
+            }else{
+                break;
+            }
+        }
+        return num;
+    }
+}
