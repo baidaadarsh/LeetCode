@@ -52,3 +52,33 @@ This repository contains the set of 50 Easy Problems in 7 days.
 48. [1. Two Sum] - Hash Table
 49. [167. Two Sum II - Input array is sorted] - Two Pointers
 50. [88. Merge Sorted Array] - Two Pointers
+
+
+## Learnings:
+# General Learnings:
+1. Read the question carefully.
+2. Think Simply.
+3. Write neat code.
+4. Break a big problem into small steps and it would surely get done!
+5. Try Brute force first, you can think of optimization later on.
+6. Using Library functions can help improve your code.
+7. HashTables can be used in cases where we need to create multiple if else conditions, it would help improve the code.
+8. If you need two output parameters to return in a recursion, use a global variable.
+9. Do not recalculate same thing.
+
+# DS Algo Learnings:
+1. Boyer-Moore Voting Algorithm[Delighted to learn about it].
+2. We can use two pointers to find a cycle.
+3. You need not allocate new memory spaces for LinkedList Questions. The number of nodes are just enough. Try to use at max use 1 extra node reference.
+4. Do not modify the initial linked list when returning final output.
+5. We can apply abstract concepts like slow pointer and fast pointer in multiple ways.
+
+
+# Java specific Learnings:
+1. Its better to convert into a character array by using toCharArray, instead of using String and charAt everytime.
+2. Integer array is always better than HashMap<String, Integer> [Time Complexity]
+3. Collections.nCopies can be used in cases when we need a list with same object.
+4. Usage of Array is better than Stack for time complexity concerns.
+5. retainsAll java helps in set difference.
+6. Conversion of Set<Integer> to int[] - result.stream().mapToInt(Integer::intValue).toArray();
+6. char arrays are always better than hashmaps(Use them if the problem constraints allow you to).
