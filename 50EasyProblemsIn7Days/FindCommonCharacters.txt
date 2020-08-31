@@ -1,0 +1,99 @@
+[1002. Find Common Characters] - Hash Table
+
+Question:
+
+Given an array A of strings made only from lowercase letters, return a list of all characters that show up in all strings within the list (including duplicates).  For example, if a character occurs 3 times in all strings but not 4 times, you need to include that character three times in the final answer.
+
+You may return the answer in any order.
+
+ 
+
+Example 1:
+
+Input: ["bella","label","roller"]
+Output: ["e","l","l"]
+Example 2:
+
+Input: ["cool","lock","cook"]
+Output: ["c","o"]
+ 
+
+Note:
+
+1 <= A.length <= 100
+1 <= A[i].length <= 100
+A[i][j] is a lowercase letter
+
+My Solution:
+class Solution {
+    public int helper(char c, char[] arrStr) {
+        int cnt = 0;
+        for(char temp: arrStr)
+            if(temp == c)
+                cnt++;
+        return cnt;
+    }
+    
+    public List<String> commonChars(String[] A) {
+        List<String> res = new ArrayList<String>();
+        Map<Character, Integer> map = new HashMap<Character, Integer>();
+        for(char c: A[0].toCharArray())
+            map.put(c, map.getOrDefault(c, 0) + 1);
+        for(Character c: map.keySet())
+            for(int i = 1; i < A.length; i++)
+                map.put(c, Math.min(helper(c, A[i].toCharArray()), map.get(c)));
+        for(Character c: map.keySet())
+            for(int i = 1; i <= map.get(c); i++)
+                res.add(c+"");
+        return res;
+    }
+}
+
+Leetcode Solution:
+class Solution {
+    public List<String> commonChars(String[] A) {
+        
+    int[] last = count(A[0]);
+        for (int i = 1; i < A.length; i++) {
+            last = intersection(last, count(A[i]));
+        }
+        List<String> arr = new ArrayList<>();
+        for (int i = 0; i < 26; i++) {
+            if (last[i] != 0) {
+                char a = 'a';
+                a += i;
+                String s = String.valueOf(a);
+                while (last[i] > 0) {
+                    arr.add(s);
+                    last[i]--;
+                }
+            }
+        }
+        return arr;
+    }
+
+    int[] intersection(int[] a, int[] b) {
+        int[] t = new int[26];
+        for (int i = 0; i < 26; i++) {
+            t[i] = Math.min(a[i], b[i]);
+        }
+        
+        return t;
+    }
+
+    int[] count(String str) {
+        int[] t = new int[26];
+        for (char c : str.toCharArray()) 
+        {
+            t[c - 'a']++;
+        }
+        
+        return t;
+    }
+}
+
+Approach:
+1. HashMap
+
+Learnings:
+1. char arrays are always better than hashmaps(Use them if the problem constraints allow you to).
