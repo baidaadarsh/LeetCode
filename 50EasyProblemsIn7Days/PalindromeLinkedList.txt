@@ -74,8 +74,6 @@ class Solution {
     }
 }
 
-Leetcode Solution:
-
 Approach:
 1. Using Stack and iterating again to validate.O(n)time & O(n)space
 2. Find middle element, reverse linked list from middle element, iterate and verify two parts of linked list.O(N) time & O(1) space
