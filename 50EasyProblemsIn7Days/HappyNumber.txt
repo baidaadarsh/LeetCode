@@ -1,0 +1,71 @@
+[202. Happy Number]
+
+Question:
+Write an algorithm to determine if a number n is "happy".
+
+A happy number is a number defined by the following process: Starting with any positive integer, replace the number by the sum of the squares of its digits, and repeat the process until the number equals 1 (where it will stay), or it loops endlessly in a cycle which does not include 1. Those numbers for which this process ends in 1 are happy numbers.
+
+Return True if n is a happy number, and False if not.
+
+Example: 
+
+Input: 19
+Output: true
+Explanation: 
+12 + 92 = 82
+82 + 22 = 68
+62 + 82 = 100
+12 + 02 + 02 = 1
+
+My Solution:
+class Solution {
+    public boolean isHappy(int n) {
+        int sum;
+        Set<Integer> set = new HashSet<Integer>();
+        while(n != 1) {
+            if(set.contains(n))
+                return false;
+            set.add(n);
+            sum = 0;
+            while(n > 0) {
+                sum += (int) Math.pow(n % 10, 2);
+                n /= 10;
+            }
+            n = sum;
+        }
+        return true;
+    }
+}
+
+Leetcode Solution:
+class Solution {
+    public boolean isHappy(int n) {
+        int x = n;
+        int y = n;
+        while(x>1){
+            x = cal(x) ;
+            if(x==1) return true ;
+            y = cal(cal(y));
+            if(y==1) return true ;
+
+            if(x==y) return false;
+        }
+        return true ;
+    }
+    public int cal(int n){
+        int x = n;
+        int s = 0;
+        while(x>0){
+            s = s+(x%10)*(x%10);
+            x = x/10;
+        }
+        return s ;
+    }
+}
+
+Approach:
+1. Hash table.
+2. Two pointer approach - slow pointer and fast pointer.
+
+Learnings - 
+1. We can apply abstract concepts like slow pointer and fast pointer in multiple ways.
