@@ -1,0 +1,116 @@
+[237. Delete Node in a Linked List]
+
+Question:
+Write a function to delete a node (except the tail) in a singly linked list, given only access to that node.
+
+Example 1:
+
+Input: head = [4,5,1,9], node = 5
+Output: [4,1,9]
+Explanation: You are given the second node with value 5, the linked list should become 4 -> 1 -> 9 after calling your function.
+Example 2:
+
+Input: head = [4,5,1,9], node = 1
+Output: [4,5,9]
+Explanation: You are given the third node with value 1, the linked list should become 4 -> 5 -> 9 after calling your function.
+ 
+
+Note:
+
+The linked list will have at least two elements.
+All of the nodes' values will be unique.
+The given node will not be the tail and it will always be a valid node of the linked list.
+Do not return anything from your function.
+
+My Solution:
+class Solution {
+    public void deleteNode(ListNode node) {
+        while(node.next.next != null) {
+            node.val = node.next.val;
+            node = node.next;
+        }
+        node.val = node.next.val;
+        node.next = null;
+    }
+}
+
+Leetcode Solution:
+class Solution {
+    public void deleteNode(ListNode node) {
+        node.val = node.next.val;
+        node.next = node.next.next;
+		System.gc();
+        
+    }
+}
+
+Approach:
+1. Intuition - O(n)
+2. Keep track of previous - O(n)
+3. Simpler solutions exist! - just copy one node - O(1)
+
+2. [206. Reverse Linked List]
+
+Question:
+
+Reverse a singly linked list.
+
+Example:
+
+Input: 1->2->3->4->5->NULL
+Output: 5->4->3->2->1->NULL
+Follow up:
+
+A linked list can be reversed either iteratively or recursively. Could you implement both?
+
+My Solution:
+Iterative:
+class Solution {
+    public ListNode reverseList(ListNode head) {
+        if(head == null)
+            return head;
+        ListNode newHead = null, prev = null;
+        while(head.next != null) {
+            newHead = new ListNode(head.val, prev);
+            prev = newHead;
+            head = head.next;
+        }
+        newHead = new ListNode(head.val, prev);
+        return newHead;
+    }
+}
+
+Recursive:
+class Solution {
+    public ListNode reverseList(ListNode head) {
+        if(head == null || head.next == null)
+            return head;
+        ListNode newHead = reverseList(head.next);
+        head.next.next = head;
+        head.next = null;
+        return newHead;
+    }
+}
+
+Leetcode Solution:
+
+class Solution {
+    public ListNode reverseList(ListNode head) {
+        ListNode prev=null;
+        ListNode current=head;
+        while(current!=null){
+            ListNode temp=current.next;
+            current.next=prev;
+            prev=current;
+            current=temp;
+        }
+        return prev;
+    }
+}
+
+Approach:
+1. Creating a new LinkedList while traversing the old one.
+2. Using one temp reference node.
+
+Learnings:
+1. You need not allocate new memory spaces for LinkedList Questions. The number of nodes are just enough. Try to use at max use 1 extra node reference.
