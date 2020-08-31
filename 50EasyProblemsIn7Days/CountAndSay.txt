@@ -1,0 +1,92 @@
+[38. Count and Say]
+
+Question:
+The count-and-say sequence is the sequence of integers with the first five terms as following:
+
+1.     1
+2.     11
+3.     21
+4.     1211
+5.     111221
+1 is read off as "one 1" or 11.
+11 is read off as "two 1s" or 21.
+21 is read off as "one 2, then one 1" or 1211.
+
+Given an integer n where 1 ≤ n ≤ 30, generate the nth term of the count-and-say sequence. You can do so recursively, in other words from the previous member read off the digits, counting the number of digits in groups of the same digit.
+
+Note: Each term of the sequence of integers will be represented as a string.
+
+ 
+
+Example 1:
+
+Input: 1
+Output: "1"
+Explanation: This is the base case.
+Example 2:
+
+Input: 4
+Output: "1211"
+Explanation: For n = 3 the term was "21" in which we have two groups "2" and "1", "2" can be read as "12" which means frequency = 1 and value = 2, the same way "1" is read as "11", so the answer is the concatenation of "12" and "11" which is "1211".
+
+My Solution:
+class Solution {
+    public String countAndSay(int n) {
+        if(n == 1)
+            return "1";
+        return interpret(countAndSay(n - 1));
+    }
+    
+    public String interpret(String num) {
+        int i = 0, j = 0;
+        StringBuilder res = new StringBuilder();
+        char prev = num.charAt(j);
+        do {
+            j = i;
+            prev = num.charAt(j);
+            i++;
+            while(i < num.length() && prev == num.charAt(i))
+                i++;
+            res.append(i - j).append(prev);            
+        }while(i < num.length());
+        return res.toString();
+    }
+}
+
+Leetcode Solution:
+class Solution {
+    public String countAndSay(int n) {
+        String s1 = "1";
+        for(int i = 1; i < n; i++){
+            s1 = build(s1);
+        }
+        return s1;
+    }
+
+    public String build(String s){
+        StringBuilder stringBuilder  = new StringBuilder();
+        int index = 0;
+        int count = 1;
+        char c = s.charAt(index);
+        for(int i = 1; i < s.length();i++){
+            if(s.charAt(i) == c){
+                count ++;
+            }else{
+                stringBuilder.append(count);
+                stringBuilder.append(c);
+                c = s.charAt(i);
+                count = 1;
+            }
+        }
+        stringBuilder.append(count);
+        stringBuilder.append(c);
+        return  stringBuilder.toString();
+
+    }
+}
+
+Approach:
+1. Recursion + StringBuilder + Intuition
+
+Learnings:
+1. Break a big problem into small steps and it would surely get done!
