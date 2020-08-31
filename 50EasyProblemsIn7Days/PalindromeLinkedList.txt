@@ -1,0 +1,87 @@
+[234. Palindrome Linked List]
+
+Question:
+
+Given a singly linked list, determine if it is a palindrome.
+
+Example 1:
+
+Input: 1->2
+Output: false
+Example 2:
+
+Input: 1->2->2->1
+Output: true
+Follow up:
+Could you do it in O(n) time and O(1) space?
+
+My Solution:
+//O(n)time & O(n)space
+class Solution {
+    public boolean isPalindrome(ListNode head) {
+        Stack<ListNode> stack = new Stack<ListNode>();
+        ListNode curr = head;
+        while(curr != null) {
+            stack.push(curr);
+            curr = curr.next;
+        }
+        curr = head;
+        while(!stack.isEmpty()) {
+            if(stack.pop().val != curr.val)
+                return false;
+            curr = curr.next;
+        }
+            
+        
+        return true;
+    }
+}
+
+Solution 2:
+//O(N) time & O(1) space
+//The input linked list is getting modified in this solution[Caution]
+class Solution {
+    public boolean isPalindrome(ListNode head) {
+        ListNode mid, curr = head;
+        
+        mid = findMid(head);
+        mid = reverseLinkedList(mid);
+        while(mid != null) {
+            if(mid.val != curr.val)
+                return false;
+            mid = mid.next;
+            curr = curr.next;
+        }
+        return true;
+    }
+    
+    public ListNode findMid(ListNode head) {
+        ListNode slow = head, fast = head;
+        while(fast != null && fast.next != null) {
+            fast = fast.next.next;
+            slow = slow.next;
+        }
+        return slow;
+    }
+    
+    public ListNode reverseLinkedList(ListNode head) {
+        if(head == null || head.next == null)
+            return head;
+        ListNode rest = reverseLinkedList(head.next);
+        head.next.next = head;
+        head.next = null;
+        return rest;        
+    }
+}
+
+Leetcode Solution:
+
+Approach:
+1. Using Stack and iterating again to validate.O(n)time & O(n)space
+2. Find middle element, reverse linked list from middle element, iterate and verify two parts of linked list.O(N) time & O(1) space
+3. Use a global variable to stores head, use recursion and check each node starting from last using global variable [increment it after very call stack is completed].
+
+Learnings:
+1. Try Brute force first, you can think of optimization later on.
+2. Do not modify the initial linked list when returning final output.
+3. If you need two output parameters to return in a recursion, use a global variable.
