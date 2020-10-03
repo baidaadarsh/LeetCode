@@ -35,7 +35,7 @@ Each test case will call ping with strictly increasing values of t.
 At most 104 calls will be made to ping.
 
 ## My Solution:
-`
+``
 import java.util.*;
 
 class RecentCounter {
@@ -51,10 +51,10 @@ class RecentCounter {
         return map.size() - map.ceilingEntry(t - 3000).getValue();
     }
 }
-`
+``
 
 ## Leetcode Solution:
-`
+``
 class RecentCounter {
     LinkedList<Integer> slideWindow;
 
@@ -71,7 +71,7 @@ class RecentCounter {
         return this.slideWindow.size();
     }
 }
-`
+``
 
 ## Approach:
 1. TreeMap(Not so efficient as we are storing redundant pings as well).
