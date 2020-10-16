@@ -32,7 +32,7 @@ Constraints:
 -231 <= nums[i] <= 231 - 1
 0 <= k <= 105
 
-## My Solution:(Reverse Approach)
+## Solution:(Reverse Approach)
 ```
 class Solution {
     public void rotate(int[] nums, int k) {
@@ -55,7 +55,7 @@ class Solution {
 }
 ```
 
-## My Solution:(Cyclic Replacements Approach)
+## Solution:(Cyclic Replacements Approach)
 ```
 class Solution {
     public void rotate(int[] nums, int k) {
